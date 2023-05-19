@@ -22,6 +22,17 @@ router.get('/', async (req, res) => {
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
+  Product.findOne({
+    where: { id: req.params.id },
+    include: [{ model: Category }, { model: Tag }],
+  })
+    .then((productData) => {
+      if (!productData) {
+        res.status(404).json({ message: 'No product found with this id!' });
+        return;
+      }
+      res.status(200).json(productData);
+    })
 });
 
 // create new product
@@ -103,6 +114,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
+
 });
 
 module.exports = router;
