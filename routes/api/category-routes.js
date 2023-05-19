@@ -35,10 +35,28 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new category
+  Category.create(req.body)
+    .then((categoryData) => {
+      res.status(200).json(categoryData);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({ message: 'Internal server error' });
+    });
 });
 
-router.put('/:id', (req, res) => {
-  // update a category by its `id` value
+router.put("/:id", (req, res) => {
+    // update a category by its `id` value
+    Category.update(req.body, {
+        where: { id: req.params.id },
+    })
+        .then((categoryData) => {
+            res.status(200).json(categoryData);
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).json({ message: "Internal server error" });
+        });
 });
 
 router.delete('/:id', (req, res) => {
