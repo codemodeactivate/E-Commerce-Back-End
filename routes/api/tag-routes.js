@@ -44,8 +44,19 @@ router.post('/', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
-  // update a tag's name by its `id` value
+router.put("/:id", (req, res) => {
+    // update a tag's name by its `id` value
+    Tag.update(req.body, {
+        where: {
+            id: req.params.id,
+        },
+    }).then((tag) => {
+        if (!tag) {
+            res.status(404).json({ message: "No tag found with this id!" });
+            return;
+        }
+        res.status(200).json(tag);
+    });
 });
 
 router.delete('/:id', (req, res) => {
