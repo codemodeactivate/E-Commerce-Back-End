@@ -15,7 +15,7 @@
   ## Description
   express.js api using sequelize & MySQL
   ### Demo Video
-  [![Demo Video](demo.png)](https://video.mp3)
+  [![Demo Video](demo.png)](https://drive.google.com/file/d/1kk_cER5nb5VrcIt1P56Wub6fzOqGMZYD/view)
   ## Installation
   Make sure to install node by typing:
    ```
